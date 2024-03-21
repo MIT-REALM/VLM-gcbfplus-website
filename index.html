@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="GCBF+">
+  <meta name="keywords" content="Multi-agent systems; Distributed control; Safe control; Control barrier functions; Graph neural networks">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GCBF+</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.png"> -->
+  <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg" />
+  <link rel="icon" type="image/png" href="./static/images/favicon.png" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://kunalgarg.mit.edu/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://realm.mit.edu">
+            REALM Website
+          </a>
+          <a class="navbar-item" href="https://mit-realm.github.io/gcbfplus-website/">
+            GCBF+: A Neural Graph Control Barrier Function Framework for Distributed Safe Multi-Agent Control
+          </a>
+          <a class="navbar-item" href="https://arxiv.org/abs/2311.13714">
+            Survey: Learning Safe Control for Multi-Robot Systems: Methods, Verification, and Open Challenges
+          </a>
+        </div>
+        <!-- <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://mit-realm.github.io/gcbf-website/">
+            GCBFv0
+          </a>
+        </div> -->
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Large Language Models to the Rescue: Deadlock Resolution in Multi-Robot Systems</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://kunalgarg.mit.edu/">Kunal Garg*</a>,</span>
+              <span class="author-block">
+                <a href="https://aeroastro.mit.edu/realm/team/jake-arkin/">Jacob Arkin</a>,</span>
+              <span class="author-block">
+                <a href="https://syzhang092218-source.github.io/">Songyuan Zhang</a>,</span>
+              <span class="author-block">
+                <a href="https://groups.csail.mit.edu/rrg/index.php?n=Main.HomePage">Nicholas Roy</a></span>
+              <span class="author-block">
+                <a href="http://chuchu.mit.edu/">Chuchu Fan</a></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Massachusetts Institute of Technology</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Supplementary Video</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://youtu.be/TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Presentation Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="hero-body">
+        <h2 class="title is-4">Overview of the hierarchical control framework where an LLM-based high-level planner assigns a leader for a multi-robot system, resulting in a leader-follower formation.</h2>
+        <center>
+          <img width=70% src="./figs/LLM_control_overview.png"
+        </center>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/TODO?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Multi-agent robotic systems are prone to deadlocks in an obstacle environment where the system can get stuck away from its desired location under a smooth low-level control policy. Without an external intervention, often in terms of a high-level command, it is not possible to guarantee that just a low-level control policy can resolve such deadlocks. Utilizing the generalizability and low data requirements of large language models (LLMs), this paper explores the possibility of using LLMs for deadlock resolution. We propose a hierarchical control framework where an LLM resolves deadlocks by assigning a leader and direction for the leader to move along. A graph neural network (GNN) based low-level distributed control policy executes the assigned plan. We systematically study various prompting techniques to improve LLM’s performance in resolving deadlocks. Using manually labeled trajectory data, we provide in-context learning examples for LLM.          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  
+  <div class="container is-max-desktop">
+    <!-- Main point 1 -->
+    <div class="column">
+      <h2 class="title is-3">Evaluations</h2>
+      <div class="content">
+        <div class="content has-text-justified">
+          <b>
+            Mean and standard deviation the number of agents reaching their goals for 20 instances of the randomized room environments for hand-designed leader assignment, no leader assignment (only GCBF+), and GPT3.5-based leader assignment.          
+          </b>
+          <center>
+            <!-- <iframe src="./figs/finish_count_new_2.pdf" style="width: 100%;height: 100%;border: none;"></iframe> -->
+            <!-- <img width=70% src="./figs/finish_count_new_2.pdf" -->
+          </center>
+          <embed
+              src="./figs/finish_count_new_2.pdf"
+              type="application/pdf"
+              frameBorder="0"
+              scrolling="auto"
+              height="100%"
+              width="100%"
+          ></embed>
+          <b> 
+            LLM-based high level planner in action. The LLM suggests a leader and a direction for it to move along when the agents get stuck in a deadlock. 
+          </b>
+          <center>
+            <video width="33%" autoplay="" muted="" loop="">
+              <source src="vids/LLM_zero_shot.mp4" type="video/mp4">
+            </video>
+          </center>
+          
+        </div>
+      </div>
+    </div>
+    <!--/ Main point 1 -->
+
+  </div>
+  <!--/ Concurrent Work. -->
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{TODO,
+author={TODO, TODO and TODO, TODO},
+journal={TODO},
+title={TODO},
+year={TODO},
+volume={TODO},
+number={TODO},
+pages={TODO},
+doi={TODO}}
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is based that used by <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+            We sincerely thank <a href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template.
+          </p>
+        </div>
+      </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
