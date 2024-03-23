@@ -139,7 +139,7 @@
               </span> -->
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="TODO"
+                <a href="https://github.com/kunalgarg42/LLM_gcbgplus"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -260,21 +260,21 @@ For the given example, an acceptable output is {"Leader": 3, "Direction": "To go
       <h2 class="title is-3">Evaluations</h2>
       <div class="content">
         <div class="content has-text-justified">
+          (Top plot) 20 instances of the Randomized Room environment and Randomized environment (bottom plot)
+           <!--end line  -->
+          
+          
           <b>
-            Mean and standard deviation the number of agents reaching their goals for 20 instances of the randomized room environments for hand-designed leader assignment, no leader assignment (only GCBF+), and GPT3.5-based leader assignment.          
-          </b>
+            We evaluate the performance of the LLM-based high-level planner in two environments: Randomized Room and Randomized.
+            Frequency (left axis) of trials in which N agents reach their goal for (shown in thin colored bars), and the average number of agents reaching their goal per trial (right axis) for each tested high-level planner (shown in the thick gray bar).          </b>
           <center>
-            <!-- <iframe src="./figs/finish_count_new_2.pdf" style="width: 100%;height: 100%;border: none;"></iframe> -->
-            <!-- <img width=70% src="./figs/finish_count_new_2.pdf" -->
+            <img width=70% src="./figs/finish_count_room.png">
           </center>
-          <embed
-              src="./figs/finish_count_new_2.pdf"
-              type="application/pdf"
-              frameBorder="0"
-              scrolling="auto"
-              height="100%"
-              width="100%"
-          ></embed>
+
+          <center>
+            <img width=70% src="./figs/finish_count_random.png">
+          </center>
+
           <b> 
             LLM-based high level planner in action. The LLM suggests a leader and a direction for it to move along when the agents get stuck in a deadlock. 
           </b>
