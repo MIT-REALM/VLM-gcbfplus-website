@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="GCBF+">
+        content="LLM-based deadlock resolution">
   <meta name="keywords" content="Multi-agent systems; Distributed control; Safe control; Control barrier functions; Graph neural networks">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GCBF+</title>
+  <title>LLM-based deadlock resolution</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -260,10 +260,9 @@ For the given example, an acceptable output is {"Leader": 3, "Direction": "To go
       <h2 class="title is-3">Evaluations</h2>
       <div class="content">
         <div class="content has-text-justified">
-          (Top plot) 20 instances of the Randomized Room environment and Randomized environment (bottom plot)
+          (Top plot) 20 instances of the Randomized Room environment and Randomized environment (bottom plot) <br>
+
            <!--end line  -->
-          
-          
           <b>
             We evaluate the performance of the LLM-based high-level planner in two environments: Randomized Room and Randomized.
             Frequency (left axis) of trials in which N agents reach their goal for (shown in thin colored bars), and the average number of agents reaching their goal per trial (right axis) for each tested high-level planner (shown in the thick gray bar).          </b>
@@ -279,8 +278,8 @@ For the given example, an acceptable output is {"Leader": 3, "Direction": "To go
             LLM-based high level planner in action. The LLM suggests a leader and a direction for it to move along when the agents get stuck in a deadlock. 
           </b>
           <center>
-            <video width="33%" autoplay="" muted="" loop="">
-              <source src="vids/LLM_zero_shot.mp4" type="video/mp4">
+            <video width="50%" autoplay="" muted="" loop="">
+              <source src="vids/LLM_in_action.mp4" type="video/mp4">
             </video>
           </center>
           
