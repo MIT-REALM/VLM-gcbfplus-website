@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="GCBF+">
+        content="LLM-based deadlock resolution">
   <meta name="keywords" content="Multi-agent systems; Distributed control; Safe control; Control barrier functions; Graph neural networks">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GCBF+</title>
+  <title>LLM-based deadlock resolution</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -210,7 +210,7 @@
       <div class="content">
         <div class="content has-text-justified">
           <b>
-            Prompts used for querying LLMs are given below. 
+            User prompts used for querying LLMs are given below. 
           </b>
           <!-- Create a list -->
           <ul>
@@ -236,8 +236,14 @@
                 </li>
                 <li>
                   <b>Example Scenario</b>
-                  An example environment description is as follows.
-***Name***Env:485***Number of agents***5***Safety radius***0.05***Connectivity radius***0.5***Agents***AgentId***1***current state***(3.17,2.97)***goal location***(3.69,3.69)***obstacles seen at***[(3.25,2.97),(3.25,2.95),(3.25,2.99)]***AgentId***2***current state***(3.05,2.13)***goal location***(3.97,3.97)***obstacles seen at***[(3.25,2.21),(3.25,2.26),(3.32,2.18)]***AgentId***3***current state***(3.04,2.57)***goal location***(3.69,3.69)***obstacles seen at***[(3.25,2.57),(3.25,2.61),(3.25,2.53)]***AgentId***4***current state***(3.03,2.34)***goal location***(3.97,3.97)***obstacles seen at***[(3.25,2.34),(3.25,2.39),(3.25,2.30)]***AgentId***5***current state***(3.09,2.78)***goal location***(3.83,3.83)***obstacles seen at***[(3.25,2.78),(3.25,2.75),(3.25,2.81)]
+                  An example environment description is as follows.<br>
+
+                  ***Name***Env:485***Number of agents***5***Safety radius***0.05***Connectivity radius***0.5***Agents<br>
+                  ***AgentId***1***current state***(3.17,2.97)***goal location***(3.69,3.69)***obstacles seen at***[(3.25,2.97),(3.25,2.95),(3.25,2.99)]<br>
+                  ***AgentId***2***current state***(3.05,2.13)***goal location***(3.97,3.97)***obstacles seen at***[(3.25,2.21),(3.25,2.26),(3.32,2.18)]<br>
+                  ***AgentId***3***current state***(3.04,2.57)***goal location***(3.69,3.69)***obstacles seen at***[(3.25,2.57),(3.25,2.61),(3.25,2.53)]<br>
+                  ***AgentId***4***current state***(3.03,2.34)***goal location***(3.97,3.97)***obstacles seen at***[(3.25,2.34),(3.25,2.39),(3.25,2.30)]<br>
+                  ***AgentId***5***current state***(3.09,2.78)***goal location***(3.83,3.83)***obstacles seen at***[(3.25,2.78),(3.25,2.75),(3.25,2.81)]<br>
 For the given example, an acceptable output is {"Leader": 3, "Direction": "To goal"}. An unacceptable output is {"Leader": 0, "Direction": "To goal"} since the leader should be in the range (1, 5). An unacceptable output is {"Leader": 7, "Direction": "To goal"} since the leader should be in the range (1, 5).
                 </li>
               </ul>
@@ -260,10 +266,9 @@ For the given example, an acceptable output is {"Leader": 3, "Direction": "To go
       <h2 class="title is-3">Evaluations</h2>
       <div class="content">
         <div class="content has-text-justified">
-          (Top plot) 20 instances of the Randomized Room environment and Randomized environment (bottom plot)
+          (Top plot) 20 instances of the Randomized Room environment and Randomized environment (bottom plot) <br>
+
            <!--end line  -->
-          
-          
           <b>
             We evaluate the performance of the LLM-based high-level planner in two environments: Randomized Room and Randomized.
             Frequency (left axis) of trials in which N agents reach their goal for (shown in thin colored bars), and the average number of agents reaching their goal per trial (right axis) for each tested high-level planner (shown in the thick gray bar).          </b>
@@ -279,8 +284,8 @@ For the given example, an acceptable output is {"Leader": 3, "Direction": "To go
             LLM-based high level planner in action. The LLM suggests a leader and a direction for it to move along when the agents get stuck in a deadlock. 
           </b>
           <center>
-            <video width="33%" autoplay="" muted="" loop="">
-              <source src="vids/LLM_zero_shot.mp4" type="video/mp4">
+            <video width="50%" autoplay="" muted="" loop="">
+              <source src="vids/LLM_in_action.mp4" type="video/mp4">
             </video>
           </center>
           
