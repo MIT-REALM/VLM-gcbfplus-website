@@ -31,6 +31,10 @@
 </head>
 <body>
 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -79,7 +83,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Large Language Models to the Rescue: Deadlock Resolution in Multi-Robot Systems</h1>
+          <h1 class="title is-1 publication-title">Foundation Models to the Rescue: Deadlock Resolution in Multi-Robot Systems</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://kunalgarg.mit.edu/">Kunal Garg*</a>,</span>
@@ -87,8 +91,8 @@
                 <a href="https://aeroastro.mit.edu/realm/team/jake-arkin/">Jacob Arkin</a>,</span>
               <span class="author-block">
                 <a href="https://syzhang092218-source.github.io/">Songyuan Zhang</a>,</span>
-              <span class="author-block">
-                <a href="https://groups.csail.mit.edu/rrg/index.php?n=Main.HomePage">Nicholas Roy</a></span>
+              <!-- <span class="author-block">
+                <a href="https://groups.csail.mit.edu/rrg/index.php?n=Main.HomePage">Nicholas Roy</a></span> -->
               <span class="author-block">
                 <a href="http://chuchu.mit.edu/">Chuchu Fan</a></span>
           </div>
@@ -164,7 +168,7 @@
       <div class="hero-body">
         <h2 class="title is-4">Overview of the hierarchical control framework where an LLM-based high-level planner assigns a leader for a multi-robot system, resulting in a leader-follower formation.</h2>
         <center>
-          <img width=70% src="./figs/LLM_control_overview.png"
+          <img width=70% src="./figs/vlm_overview.png">
         </center>
       </div>
     </div>
@@ -191,7 +195,8 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Multi-agent robotic systems are prone to deadlocks in an obstacle environment where the system can get stuck away from its desired location under a smooth low-level control policy. Without an external intervention, often in terms of a high-level command, it is not possible to guarantee that just a low-level control policy can resolve such deadlocks. Utilizing the generalizability and low data requirements of large language models (LLMs), this paper explores the possibility of using LLMs for deadlock resolution. We propose a hierarchical control framework where an LLM resolves deadlocks by assigning a leader and direction for the leader to move along. A graph neural network (GNN) based low-level distributed control policy executes the assigned plan. We systematically study various prompting techniques to improve LLM’s performance in resolving deadlocks. Using manually labeled trajectory data, we provide in-context learning examples for LLM.          </p>
+            Multi-agent robotic systems (MRS) are prone to deadlocks in an obstacle environment where the robots can get stuck away from their desired locations under a smooth low-level control policy. Without an external intervention, often in terms of a high-level command, a low-level control policy can not resolve such deadlocks. Utilizing the generalizability and low data requirements of foundation models, this paper explores the possibility of using text-based models, i.e., large language models (LLMs), and text-and-image-based models, i.e., vision-language models (VLMs) for deadlock resolution. We propose a hierarchical control framework in which a foundation model-based high-level planner resolves deadlocks by assigning a leader and a set of waypoints to the leader of the MRS. Then, a low-level distributed control policy based on graph neural networks is executed. We conduct extensive experiments on various MRS environments using the best available pre-trained LLMs and VLMs. We compare their performance with a grid-based planner, in terms of the effectiveness in assisting the MRS to reach their goal locations and the computational time. Our results illustrate that foundation models can assist MRS operating in complex obstacle-cluttered environments to resolve deadlocks efficiently. In particular, compared to grid-based planners, the foundation models have better performance in terms of goal-reaching rate and computational time for complex environments. 
+          </p>
         </div>
       </div>
     </div>
@@ -216,37 +221,92 @@
           <ul>
               <ul>
                 <li> 
-                  <b>Task description:</b> We are working with a multi-robot system navigating in an obstacle environment to reach their respective goal locations.
-                  The objective is to move the robots toward their goal locations while maintaining safety with obstacles, safety with each other, and inter-agent connectivity. Safety is based on agents maintaining a minimum inter-agent "safety radius" while connectivity is based on connected agents remaining within a "connectivity radius".  
+                  <b>Task description:</b> We are working with a multi-robot system navigating in an obstacle environment to reach their respective goal locations. The objective is to move the robots toward their goal locations while maintaining safety with obstacles, safety with each other, and inter-agent connectivity. Safety is based on agents maintaining a minimum inter-agent "safety radius" while connectivity is based on connected agents remaining within a "connectivity radius".  
                   Your role as the helpful assistant to provide a high-level command when the system gets stuck near obstacles. The high-level command is in terms of a leader assignment for the multi-robot system and a direction of motion for the leader. 
-                  An optimal choice of leader and moving direction minimizes the traveling distance of agents toward their goals and maintains safety and connectivity. 
+                  An optimal choice of leader and moving direction minimizes the traveling distance of agents toward their goals and maintains safety and connectivity.               
                 </li>
                 <li> 
                   <b> 
                     Environment state: 
                   </b>
-                  The multi-robot environment description consists of the tuple: (Number of agents, Safety radius, Connectivity radius, Agent locations, Agent goals, Locations of visible obstacles)
-                  The environment consists of robot Agents with information ("AgentId"=id, "current state"=(x,y), "goal location"=(xg,yg), "obstacle seen at"=[(xo, yo)]). In addition, there are global environment variables "Number of agents" = N, "Safety radius" = r, "Connectivity radius" = R.
+                  The multi-robot environment description consists of the tuple: (Number of agents, Safety radius, Connectivity radius, Agent locations, Agent goals, Obstacles, Number of waypoints).
+                  The environment consists of robot Agents with information ("AgentId"=id, "current state"=(x,y), "goal location"=(xg,yg)). 
+                  The obstacles are represented as a bottom-left corner, its width, and height. The obstacles are represented as a list of tuples [(x,y,w,h)].
+                  In addition, there are global environment variables "Number of agents" = N, "Safety radius" = r, "Connectivity radius" = R.
+                  The task is to provide a leader assignment for the multi-robot system and a set of waypoints for the leader. The leader assignment is an integer value in the range (1, Number of agents) and the waypoints for the leader are (x,y) coordinates. The number of waypoints is described by the variable "Number of waypoints" = M.
+                   
                 </li>
                 <li> 
                   <b> 
                     Desired output: 
                   </b>
-                  The expected output is a JSON format file with the keys "Leader" and "Direction". The key "Leader" can take integer values in the range (1, Number of agents) and "Direction" in the range ("To goal", "To left", "To right"). If there is an obstacle in between the leader location and its goal location, then the "Direction" should be "To left" or "To right" based on whether it is able to freely move to the left or right of the obstacle. If there is no obstacle in leader's way to its goal location, then the "Direction" should be "To goal".
+                  The expected output is a JSON format file with the keys "Leader" and "Waypoints". The key "Leader" can take integer values in the range (1, Number of agents) and "Waypoints" are of the form [(x1, y1), (x2, y2), ..., (xM, yM)].
+                  The waypoints are ordered in the sequence the leader should visit them. The first point should NOT be the current location of the leader. All the waypoints should be at least 2r distance from all the obstacles. 
+                  The waypoints should be such that the leader can move toward its goal location while maintaining safety with the obstacles. 
+                  The path connecting the leader and the waypoints should NOT intersect with any of the obstacles. 
+                  The waypoints should be in the free space of the environment, away from ALL the known obstacles. The waypoints can be chosen to wrap around the obstacles to allow the leader to move toward its goal location while evading the obstacles.
+                  If the leader cannot move directly in the direction of its goal location, the first waypoint should be to the left or right of the leader to avoid obstacles. 
+                  The consecutive waypoints should be such that the leader moves toward its goal location while maintaining safety with the obstacles.
                 </li>
                 <li>
                   <b>Example Scenario</b>
                   An example environment description is as follows.<br>
-
-                  ***Name***Env:485***Number of agents***5***Safety radius***0.05***Connectivity radius***0.5***Agents<br>
-                  ***AgentId***1***current state***(3.17,2.97)***goal location***(3.69,3.69)***obstacles seen at***[(3.25,2.97),(3.25,2.95),(3.25,2.99)]<br>
-                  ***AgentId***2***current state***(3.05,2.13)***goal location***(3.97,3.97)***obstacles seen at***[(3.25,2.21),(3.25,2.26),(3.32,2.18)]<br>
-                  ***AgentId***3***current state***(3.04,2.57)***goal location***(3.69,3.69)***obstacles seen at***[(3.25,2.57),(3.25,2.61),(3.25,2.53)]<br>
-                  ***AgentId***4***current state***(3.03,2.34)***goal location***(3.97,3.97)***obstacles seen at***[(3.25,2.34),(3.25,2.39),(3.25,2.30)]<br>
-                  ***AgentId***5***current state***(3.09,2.78)***goal location***(3.83,3.83)***obstacles seen at***[(3.25,2.78),(3.25,2.75),(3.25,2.81)]<br>
-For the given example, an acceptable output is {"Leader": 3, "Direction": "To goal"}. An unacceptable output is {"Leader": 0, "Direction": "To goal"} since the leader should be in the range (1, 5). An unacceptable output is {"Leader": 7, "Direction": "To goal"} since the leader should be in the range (1, 5).
+                  <center>
+                    <img width=100% src="./figs/LLM_env_prompt.png">
+                  </center>
+                  
                 </li>
               </ul>
+        
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="content has-text-justified">
+          <b>
+            User prompts used for querying VLMs are given below. 
+          </b>
+          <!-- Create a list -->
+          <ul>
+              <ul>
+                <li> 
+                  <b>Task description:</b> We are working with a multi-robot system navigating in an obstacle environment to reach their respective goal locations. The objective is to move the robots toward their goal locations while maintaining safety with obstacles, safety with each other, and inter-agent connectivity. Safety is based on agents maintaining a minimum inter-agent "safety radius" while connectivity is based on connected agents remaining within a "connectivity radius".  
+                  Your role as the helpful assistant to provide a high-level command when the system gets stuck near obstacles. The high-level command is in terms of a leader assignment for the multi-robot system and a direction of motion for the leader. 
+                  An optimal choice of leader and moving direction minimizes the traveling distance of agents toward their goals and maintains safety and connectivity. 
+                  
+                </li>
+                <li> 
+                  <b> 
+                    Environment state: 
+                  </b>
+                  The input image represents a grid world where the obstacles are given in black color.
+                  The location of the agents are given in blue color and the goal locations are given in green color. 
+                  The task is to provide a high-level command in terms of a leader assignment for the multi-robot system and a set of waypoints for the leader. The leader assignment is an integer value in the range (1, Number of agents) and the waypoints for the leader are (x,y) coordinates. The number of waypoints is described by the variable "Number of waypoints" = M.                   
+                </li>
+                <li> 
+                  <b> 
+                    Desired output: 
+                  </b>
+                  The expected output is a JSON format file with the keys "Leader" and "Waypoints". The key "Leader" can take integer values in the range (1, Number of agents) and "Waypoints" are of the form [(x1, y1), (x2, y2), ..., (xM, yM)].
+                  The leader should be assigned as the agent that can move freely in the environment. The leader should not be assigned to an agent that is blocked by obstacles or other agents.
+                  The waypoints are ordered in the sequence the leader should visit them. The first point should NOT be the current location of the leader. All the waypoints should be at least 2r distance from all the obstacles. 
+                  The consecutive waypoints should be such that the leader moves toward its goal location.
+                  The waypoints should be such that the leader can move toward its goal location while maintaining safety with the obstacles. 
+                  The path connecting the leader and the waypoints should NOT intersect with any of the obstacles. 
+                  The waypoints should be in the free space of the environment, away from ALL the known obstacles. The obstacles can be chosen to wrap around the obstacles to allow the leader to move toward its goal location while evading the obstacles.
+                  The leader assignment is based on agent being able to freely move. That means there should be no obstacle or other agents in its path connected to its goal. 
+                  If the leader cannot move directly in the direction of its goal location, the first waypoint should be to the left or right of the leader to avoid obstacles. The consecutive waypoints should be such that the leader moves toward its goal location while maintaining safety with the obstacles.
+                </li>
+                <li>
+                  <b>Example Scenario</b>
+                  An example environment description is as follows.<br>
+                  <center>
+                    <img width=50% src="./figs/VLM_input.png">
+                  </center>
+                  
+                </li>
+              </ul>
+        
         </div>
       </div>
     </div>
@@ -266,20 +326,39 @@ For the given example, an acceptable output is {"Leader": 3, "Direction": "To go
       <h2 class="title is-3">Evaluations</h2>
       <div class="content">
         <div class="content has-text-justified">
-          (Top plot) 20 instances of the Randomized Room environment and Randomized environment (bottom plot) <br>
-
-           <!--end line  -->
           <b>
-            We evaluate the performance of the LLM-based high-level planner in two environments: Randomized Room and Randomized.
-            Frequency (left axis) of trials in which N agents reach their goal for (shown in thin colored bars), and the average number of agents reaching their goal per trial (right axis) for each tested high-level planner (shown in the thick gray bar).          </b>
+            Performance of various high-level planners for ``Room'' environments with $N=5$ agents (Top plots), ``Maze'' environments with $N=25$ agents (Middle plots), and ``Maze'' environments with $N=50$ agents (Bottom plots). 
+            From left to right: 1) The bar shows the ratio of the trajectories where all the agents reach their goals over the total number of trajectories, and the orange dot shows the ratio of agents that reach their goals over all agents; 2) Box plot of the number of times the high-level planner intervened; 3) Box plot of the time spent for each high-level planner intervention; and 4) Box plot for the input + output token per intervention. In the box plots, the median values are in orange and the mean values are in green.          
+          </b>
           <center>
-            <img width=70% src="./figs/finish_count_room.png">
+            <img width=100% src="./figs/plot_5_new.png">
           </center>
 
           <center>
-            <img width=70% src="./figs/finish_count_random.png">
+            <img width=100% src="./figs/plot_25_new.png">
+          </center>
+          
+          <center>
+            <img width=100% src="./figs/plot_50_new.png">
+          </center>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content has-text-justified">
+          <b>
+            Comparison of distance traveled by agents under various high-level planners. 
+          </b>
+          <center>
+            <img width=100% src="./figs/plot_5_dist.png">
           </center>
 
+          <center>
+            <img width=100% src="./figs/plot_25_dist.png">
+          </center>
+          
+          <center>
+            <img width=100% src="./figs/plot_50_dist.png">
+          </center>
           <b> 
             LLM-based high level planner in action. The LLM suggests a leader and a direction for it to move along when the agents get stuck in a deadlock. 
           </b>
@@ -289,6 +368,28 @@ For the given example, an acceptable output is {"Leader": 3, "Direction": "To go
             </video>
           </center>
           
+        </div>
+      </div>
+      <div class="content">
+        <div class="content has-text-justified">
+          <b>
+            Ablation on environment information: 
+          </b>
+          <!-- <b> -->
+            Performance of various high-level planners for  ``Maze'' environments with $N=50$ agents with all known environment information and partial information (the case with all known environment information is indicated with the suffix ``-All", e.g. ``GPT4-VLM-All"). 
+          <center>
+            <img width=100% src="./figs/plot_50_comb.png">
+          </center>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content has-text-justified">
+          <b> Ablation on number of leaders: 
+          </b>
+          Performance of Claude3-Sonnet-VLM planner for ``Maze'' environments with $N=50$ agents and GPT3.5-LLM for ``Maze" environment with $N=25$ with a single leader and multi-leader assignment (the case with one leader is indicated with suffix ``-One", and that with multi-leader with ``-Multi''. 
+          <center>
+            <img width=100% src="./figs/plot_one_multi.png">
+          </center>
         </div>
       </div>
     </div>
