@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Foundation models-based deadlock resolution">
+        content="High-level planning using VLMs">
   <meta name="keywords" content="Multi-agent systems; LLMs; VLMs; Safe control; Control barrier functions; Graph neural networks">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Foundation models-based deadlock resolution</title>
+  <title>High-level planning using VLMs</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -83,29 +83,33 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Foundation Models to the Rescue: Deadlock Resolution in Multi-Robot Systems</h1>
+          <h1 class="title is-1 publication-title">Online Motion Planning for Connected Multi-Robot Systems using Vision Language Models as High-level Planners</h1>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://kunalgarg.mit.edu/">Kunal Garg</a>,</span>
               <span class="author-block">
-                <a href="https://syzhang092218-source.github.io/">Songyuan Zhang</a>,</span>
+                <a href="https://search.asu.edu/profile/5172311">Kunal Garg<sup>1</sup></a>,</span>
               <span class="author-block">
-                <a href="https://aeroastro.mit.edu/realm/team/jake-arkin/">Jacob Arkin</a>,</span>  
+                <a href="https://devika-s-n.github.io/Portfolio/">Devika Shaj Kumar Nair<sup>1</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://syzhang092218-source.github.io/">Songyuan Zhang<sup>2</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://aeroastro.mit.edu/realm/team/jake-arkin/">Jacob Arkin<sup>2</sup></a>,</span>  
                 <!-- <span class="author-block">
                 <a href="https://groups.csail.mit.edu/rrg/index.php?n=Main.HomePage">Nicholas Roy</a></span> -->
               <span class="author-block">
-                <a href="http://chuchu.mit.edu/">Chuchu Fan</a></span>
+                <a href="http://chuchu.mit.edu/">Chuchu Fan<sup>2</sup></a></span>
           </div>
-
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Massachusetts Institute of Technology</span>
+            <span class="author-block"><sup>1</sup>Arizona State University</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>2</sup>Massachusetts Institute of Technology</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="./files/Multi_agent_coordination_using_VLMs.pdf"
+                <a href="./files/Online_planning_using_VLMs.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -193,7 +197,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Multi-agent robotic systems (MRS) are prone to deadlocks in an obstacle environment where the robots can get stuck away from their desired locations under a smooth low-level control policy. Without an external intervention, often in terms of a high-level command, a low-level control policy can not resolve such deadlocks. Utilizing the generalizability and low data requirements of foundation models, this paper explores the possibility of using text-based models, i.e., large language models (LLMs), and text-and-image-based models, i.e., vision-language models (VLMs) for deadlock resolution. We propose a hierarchical control framework in which a foundation model-based high-level planner resolves deadlocks by assigning a leader and a set of waypoints to the leader of the MRS. Then, a low-level distributed control policy based on graph neural networks is executed. We conduct extensive experiments on various MRS environments using the best available pre-trained LLMs and VLMs. We compare their performance with a grid-based planner, in terms of the effectiveness in assisting the MRS to reach their goal locations and the computational time. Our results illustrate that foundation models can assist MRS operating in complex obstacle-cluttered environments to resolve deadlocks efficiently. In particular, compared to grid-based planners, the foundation models have better performance in terms of goal-reaching rate and computational time for complex environments. 
+            Connected multi-agent robotic systems (MRS) are prone to deadlocks in an obstacle environment where the robots can get stuck away from their desired locations under a smooth low-level control policy. Without an external intervention, often in terms of a high-level command, a low-level control policy cannot resolve such deadlocks, and grid-based planners are very slow for real-time online intervention. Utilizing the generalizability and low data requirements of foundation models, this paper explores the possibility of using vision-language models (VLMs) as high-level planners for deadlock resolution. We propose a hierarchical control framework where a foundation model-based high-level planner helps to resolve deadlocks by assigning a leader for the MRS as well as a set of waypoints for the MRS leader. Then, a low-level distributed control policy is executed to safely follow these waypoints, thereby evading the deadlock. We conduct extensive experiments on various MRS environments using the best available pre-trained VLMs. We compare their performance with a graph-based planner in terms of computational time and effectiveness in helping the MRS reach their target locations. Our results illustrate that, compared to grid-based planners, the foundation models perform better and can assist MRS operating in complex obstacle-cluttered environments to resolve deadlocks efficiently.
           </p>
         </div>
       </div>
@@ -343,7 +347,7 @@
       </div>
       <div class="content">
         <div class="content has-text-justified">
-          <b>
+          <!-- <b>
             Comparison of distance traveled by agents under various high-level planners. 
           </b>
           <center>
@@ -356,7 +360,7 @@
           
           <center>
             <img width=100% src="./figs/plot_50_dist.png">
-          </center>
+          </center> -->
           <b> 
             LLM-based high level planner in action. The LLM suggests a leader and a direction for it to move along when the agents get stuck in a deadlock. 
           </b>
@@ -368,6 +372,8 @@
           
         </div>
       </div>
+      
+      
       <div class="content">
         <div class="content has-text-justified">
           <b>
@@ -380,7 +386,7 @@
           </center>
         </div>
       </div>
-      <div class="content">
+      <!-- <div class="content">
         <div class="content has-text-justified">
           <b> Ablation on number of leaders: 
           </b>
@@ -389,7 +395,7 @@
             <img width=100% src="./figs/plot_one_multi.png">
           </center>
         </div>
-      </div>
+      </div> -->
     </div>
     <!--/ Main point 1 -->
 
