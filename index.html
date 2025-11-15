@@ -329,6 +329,12 @@
       <div class="content">
         <div class="content has-text-justified">
           <b>
+            We first evaluate the performance of VLMs to understand the environment state and to generate feasible waypoints within that state. We randomly generate one hundred 10x10 grid environments, each of which consists of agents, goals, and polygonal obstacles that are encoded with integer-value vertices. The figure below shows quantitative accuracy of different VLMs in scene understanding and feasible waypointgeneration capability across 100 environments.
+          </b>
+          <center>
+            <img width=100% src="./figs/scene_vs_waypoint_accuracy.png">
+          </center>
+          <b>
             Performance of various high-level planners for ``Room'' environments with $N=5$ agents (Top plots), ``Maze'' environments with $N=25$ agents (Middle plots), and ``Maze'' environments with $N=50$ agents (Bottom plots). 
             From left to right: 1) The bar shows the ratio of the trajectories where all the agents reach their goals over the total number of trajectories, and the orange dot shows the ratio of agents that reach their goals over all agents; 2) Box plot of the number of times the high-level planner intervened; 3) Box plot of the time spent for each high-level planner intervention; and 4) Box plot for the input + output token per intervention. In the box plots, the median values are in orange and the mean values are in green.          
           </b>
